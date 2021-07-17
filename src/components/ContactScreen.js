@@ -290,7 +290,6 @@ class ContactScreen extends React.Component {
 
               </View>
 
-
               <TouchableOpacity
                 style={{flex:1,alignItems:'flex-end' }}
                 onPress={() => Alert.alert(
