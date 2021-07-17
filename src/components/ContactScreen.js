@@ -289,6 +289,7 @@ class ContactScreen extends React.Component {
                 {this.renderItems("Salary: ", item.employee_salary)}
 
               </View>
+              
 
               <TouchableOpacity
                 style={{flex:1,alignItems:'flex-end' }}
