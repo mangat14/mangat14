@@ -28,7 +28,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-
+import {Provider} from "react-redux";
+import store from './src/Store';
 
 import LoginScreen from "./src/LoginScreen";
 import NavigationService from "./src/navigation/NavigationService";
@@ -50,7 +51,10 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  return (<NavigationService/>
+  return (
+    <Provider store={store()}>
+    <NavigationService/>
+    </Provider>
   );
 };
 

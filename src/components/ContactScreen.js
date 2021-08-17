@@ -12,6 +12,8 @@ import {
   TextInput,
 } from "react-native";
 import LoadingSpinner from "./LoadingSpinner";
+import { connect, Connect } from "react-redux";
+import { getHomeData } from "../action/HomeAction";
 
 class ContactScreen extends React.Component {
   constructor(props) {
@@ -19,7 +21,7 @@ class ContactScreen extends React.Component {
     this.state = {
       employeeList: [{
         "employee_age": 61,
-        "employee_name": "Tiger Nixon hgsgv d shshd sd shd sd shd dhs dsdshd s dsh",
+        "employee_name": "Tiger Nixon",
         "employee_salary": 320800,
         "id": 1,
         "profile_image": "",
@@ -166,8 +168,14 @@ class ContactScreen extends React.Component {
     };
   }
 
+  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
+    console.log('this.props---',this.props)
+  }
+
   componentDidMount() {
     //this.setState({ isLoading: true });
+    this.props.fetchHomeData(1);
+
     fetch("https://dummy.restapiexample.com/api/v1/employees")
       .then((response) => response.json())
       .then((json) => {
@@ -280,16 +288,16 @@ class ContactScreen extends React.Component {
               justifyContent: "space-between",
               shadowColor: "black", shadowOffset: { width: 0, height: 2 },
               shadowRadius: 6, shadowOpacity: 0.50, backgroundColor: "white",
-              flexDirection:'row'
+
             }}>
-              <View style={{backgroundColor:'red',flex:5}}>
+
                 {this.renderItems("Id : ", item.id)}
                 {this.renderItems("Name : ", item.employee_name)}
                 {this.renderItems("Age : ", item.employee_age)}
                 {this.renderItems("Salary: ", item.employee_salary)}
 
-              </View>
-              
+
+
 
               <TouchableOpacity
                 style={{flex:1,alignItems:'flex-end' }}
@@ -332,7 +340,22 @@ class ContactScreen extends React.Component {
   };
 }
 
-export default ContactScreen;
+
+const mapStateToProps = (state) => {
+  return {
+    mostPopularData: state.HomeReducer.response,
+  };
+};
+
+function bindActions(dispatch) {
+  return {
+    fetchHomeData: (page) => {
+      dispatch(getHomeData(page));
+    },
+  };
+}
+
+export default connect(mapStateToProps,bindActions) (ContactScreen);
 
 const styles = StyleSheet.create({
   button: {

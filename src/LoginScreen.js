@@ -56,15 +56,21 @@ class LoginScreen extends React.Component {
             personal data</Text>
         </Text>
 
-        <View style={styles.button}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUp')}>
+        <View >
+          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('SignUp')}>
             <Text>Sign Up</Text>
           </TouchableOpacity>
         </View>
 
-        <View style={styles.button}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Tab')}>
+        <View >
+          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Tab')}>
             <Text>Tabs</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View >
+          <TouchableOpacity  style={styles.button} onPress={() => this.props.navigation.navigate('SignIn')}>
+            <Text>Sign In</Text>
           </TouchableOpacity>
         </View>
 
